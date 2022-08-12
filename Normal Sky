@@ -1,0 +1,47 @@
+
+--Converted with ttyyuu12345's model to script plugin v4
+function sandbox(var,func)
+	local env = getfenv(func)
+	local newenv = setmetatable({},{
+		__index = function(self,k)
+			if k=="script" then
+				return var
+			else
+				return env[k]
+			end
+		end,
+	})
+	setfenv(func,newenv)
+	return func
+end
+cors = {}
+mas = Instance.new("Model",game:GetService("Lighting"))
+SunRaysEffect0 = Instance.new("SunRaysEffect")
+Sky1 = Instance.new("Sky")
+BloomEffect2 = Instance.new("BloomEffect")
+SunRaysEffect0.Parent = mas
+SunRaysEffect0.Intensity = 0.009999999776482582
+SunRaysEffect0.Spread = 0.10000000149011612
+Sky1.Parent = mas
+Sky1.MoonTextureId = "rbxassetid://6444320592"
+Sky1.SkyboxBk = "rbxassetid://6444884337"
+Sky1.SkyboxDn = "rbxassetid://6444884785"
+Sky1.SkyboxFt = "rbxassetid://6444884337"
+Sky1.SkyboxLf = "rbxassetid://6444884337"
+Sky1.SkyboxRt = "rbxassetid://6444884337"
+Sky1.SkyboxUp = "rbxassetid://6412503613"
+Sky1.SunAngularSize = 11
+Sky1.SunTextureId = "rbxassetid://6196665106"
+BloomEffect2.Parent = mas
+BloomEffect2.Intensity = 1
+BloomEffect2.Threshold = 2
+for i,v in pairs(mas:GetChildren()) do
+	v.Parent = game:GetService("Lighting")
+	pcall(function() v:MakeJoints() end)
+end
+mas:Destroy()
+for i,v in pairs(cors) do
+	spawn(function()
+		pcall(v)
+	end)
+end
